@@ -7,8 +7,8 @@
 
 /* ---------- 1. KONFIGURASI (bagian yang boleh diganti) ---------- */
 // GANTI nomor WhatsApp restoran asli di sini.
-// Format: kode negara tanpa "+" dan tanpa spasi. Contoh 0812-3456-7890 menjadi 6281234567890
-const WA_NUMBER = "6281234567890";
+// Format: kode negara tanpa "+" dan tanpa spasi.
+const WA_NUMBER = "6281383667186";
 
 // GANTI data kontak berikut sesuai restoran Anda (dipakai di footer)
 const KONTAK = {

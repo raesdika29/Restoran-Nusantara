@@ -630,6 +630,227 @@
                 transition: none !important;
             }
         }
+
+        /* ==================================================
+           FORM PEMESANAN
+        ================================================== */
+
+        .booking-section {
+            margin-top: 64px;
+            padding: 34px;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: var(--card);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .booking-section > h2,
+        .booking-section > p {
+            text-align: center;
+        }
+
+        .booking-section > p {
+            color: var(--muted);
+            margin: 8px auto 26px;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(240px, .8fr);
+            gap: 26px;
+            align-items: start;
+        }
+
+        .booking-fieldset {
+            min-width: 0;
+            border: 0;
+            border-top: 1px solid var(--line);
+            padding: 18px 0 0;
+            margin: 0 0 20px;
+        }
+
+        .booking-fieldset legend {
+            padding-right: 10px;
+            font-weight: 600;
+        }
+
+        .booking-fields {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .booking-field label,
+        .booking-field input {
+            display: block;
+            width: 100%;
+        }
+
+        .booking-field label {
+            margin-bottom: 5px;
+            font-size: .9rem;
+            font-weight: 500;
+        }
+
+        .booking-field input,
+        .quantity-input {
+            min-height: 44px;
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            background: var(--cream);
+            color: var(--brown);
+            font: inherit;
+        }
+
+        .menu-order-group + .menu-order-group {
+            margin-top: 16px;
+        }
+
+        .menu-order-group h3 {
+            margin-bottom: 6px;
+            color: var(--green);
+            font-size: 1rem;
+        }
+
+        .menu-order-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 86px;
+            gap: 12px;
+            align-items: center;
+            padding: 9px 0;
+            border-bottom: 1px dashed var(--line);
+        }
+
+        .menu-order-choice,
+        .payment-choice {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            cursor: pointer;
+        }
+
+        .menu-order-choice input,
+        .payment-choice input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--green);
+            flex: 0 0 auto;
+        }
+
+        .menu-order-choice small {
+            color: var(--muted);
+        }
+
+        .quantity-input {
+            width: 86px;
+            min-height: 38px;
+            padding: 5px 8px;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .payment-choice {
+            min-height: 46px;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--cream);
+        }
+
+        .payment-brands {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .brand-mark {
+            display: inline-flex;
+            min-width: 58px;
+            height: 30px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 9px;
+            border-radius: 6px;
+            background: #1a1f71;
+            color: #fff;
+            font-size: .76rem;
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        .brand-mark.mastercard {
+            background: #fff;
+            color: #d12b35;
+            border: 1px solid var(--line);
+            font-style: normal;
+        }
+
+        .brand-mark.gopay { background: #00aed6; }
+        .brand-mark.ovo { background: #4c2a86; }
+        .brand-mark.dana { background: #118eea; }
+        .brand-mark.shopeepay { background: #ee4d2d; }
+
+        .booking-summary {
+            position: sticky;
+            top: 88px;
+            padding: 20px;
+            border-radius: 14px;
+            background: var(--cream);
+        }
+
+        .booking-summary h3 {
+            margin-bottom: 12px;
+        }
+
+        .summary-lines {
+            display: grid;
+            gap: 8px;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--line);
+            color: var(--brown);
+            font-weight: 700;
+        }
+
+        .booking-submit {
+            width: 100%;
+            margin-top: 18px;
+        }
+
+        .booking-feedback {
+            margin-top: 12px;
+            color: var(--green);
+            font-size: .9rem;
+        }
+
+        .booking-feedback a {
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        @media (max-width: 760px) {
+            .booking-section { padding: 24px 18px; }
+            .booking-grid { grid-template-columns: 1fr; }
+            .booking-summary { position: static; }
+        }
+
+        @media (max-width: 520px) {
+            .booking-fields { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 
@@ -650,7 +871,7 @@
                 <li><a href="menu.html" class="active">Menu</a></li>
                 <li><a href="tentang.html">Tentang Kami</a></li>
                 <li><a href="kontak.html">Kontak</a></li>
-                <li><a class="btn-nav" href="menu.html#menu">Pesan Sekarang</a></li>
+                <li><a class="btn-nav" href="menu.html#pesan">Pesan Sekarang</a></li>
             </ul>
         </nav>
     </header>
@@ -692,6 +913,95 @@
             class="grid"
             id="grid"
         ></div>
+
+        <section class="booking-section" id="pesan" aria-labelledby="bookingTitle">
+            <h2 class="sec-title" id="bookingTitle">Formulir Pemesanan</h2>
+            <p>Isi data pemesan, pilih menu dan jumlahnya, lalu kirim rincian pesanan melalui WhatsApp.</p>
+
+            <form id="bookingForm">
+                <div class="booking-grid">
+                    <div>
+                        <fieldset class="booking-fieldset">
+                            <legend>Data Pemesan</legend>
+                            <div class="booking-fields">
+                                <div class="booking-field">
+                                    <label for="bookingName">Nama lengkap</label>
+                                    <input id="bookingName" name="nama" type="text" autocomplete="name" minlength="3" required>
+                                </div>
+                                <div class="booking-field">
+                                    <label for="bookingPhone">Nomor HP</label>
+                                    <input id="bookingPhone" name="hp" type="tel" autocomplete="tel" inputmode="tel" placeholder="08xxxxxxxxxx" required>
+                                </div>
+                                <div class="booking-field">
+                                    <label for="bookingDate">Tanggal booking</label>
+                                    <input id="bookingDate" name="tanggal" type="date" required>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="booking-fieldset">
+                            <legend>Pilih Menu dan Jumlah</legend>
+                            <div id="bookingMenu"></div>
+                        </fieldset>
+
+                        <fieldset class="booking-fieldset">
+                            <legend>Metode Pembayaran</legend>
+                            <div class="payment-options">
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentType" value="Kartu Debit/Kredit" required>
+                                    Kartu Debit/Kredit
+                                </label>
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentType" value="Dompet Digital" required>
+                                    Dompet Digital
+                                </label>
+                            </div>
+                            <div class="payment-brands" id="cardBrands" hidden>
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentBrand" value="Visa" disabled>
+                                    <span class="brand-mark" aria-label="Visa">VISA</span>
+                                </label>
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentBrand" value="Mastercard" disabled>
+                                    <span class="brand-mark mastercard" aria-label="Mastercard">Mastercard</span>
+                                </label>
+                            </div>
+                            <div class="payment-brands" id="walletBrands" hidden>
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentBrand" value="GoPay" disabled>
+                                    <span class="brand-mark gopay">GoPay</span>
+                                </label>
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentBrand" value="OVO" disabled>
+                                    <span class="brand-mark ovo">OVO</span>
+                                </label>
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentBrand" value="DANA" disabled>
+                                    <span class="brand-mark dana">DANA</span>
+                                </label>
+                                <label class="payment-choice">
+                                    <input type="radio" name="paymentBrand" value="ShopeePay" disabled>
+                                    <span class="brand-mark shopeepay">ShopeePay</span>
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <aside class="booking-summary" aria-live="polite">
+                        <h3>Ringkasan Pesanan</h3>
+                        <div class="summary-lines" id="bookingSummary">
+                            <p>Belum ada menu yang dipilih.</p>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total</span>
+                            <span id="bookingTotal">Rp0</span>
+                        </div>
+                        <button class="btn booking-submit" type="submit">Kirim Pesanan via WhatsApp</button>
+                        <p class="booking-feedback" id="bookingFeedback" role="status"></p>
+                    </aside>
+                </div>
+            </form>
+        </section>
 
     </main>
 
@@ -753,8 +1063,7 @@
                 <a
                     class="btn gold"
                     id="mOrder"
-                    target="_blank"
-                    rel="noopener"
+                    href="#pesan"
                 >
                     Pesan Sekarang
                 </a>
@@ -786,7 +1095,7 @@
         // Ganti dengan nomor WhatsApp restoran sebenarnya.
         // Format: 62, tanpa tanda + atau 0 di depan.
 
-        const WA_NUMBER = "6281234567890";
+        const WA_NUMBER = "6281383667186";
 
 
         /* ==================================================
@@ -1003,6 +1312,130 @@
 
         };
 
+        const bookingForm = document.getElementById("bookingForm");
+        const bookingMenu = document.getElementById("bookingMenu");
+        const bookingSummary = document.getElementById("bookingSummary");
+        const bookingTotal = document.getElementById("bookingTotal");
+        const bookingDate = document.getElementById("bookingDate");
+        const bookingFeedback = document.getElementById("bookingFeedback");
+
+        function setBookingDateMinimum() {
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            bookingDate.min = now.toISOString().slice(0, 10);
+        }
+
+        function renderBookingMenu() {
+            bookingMenu.innerHTML = Object.entries(MENU).map(([category, group]) => `
+                <div class="menu-order-group">
+                    <h3>${group.title}</h3>
+                    ${group.items.map((item, index) => {
+                        const id = `${category}-${index}`;
+                        return `
+                            <div class="menu-order-row">
+                                <label class="menu-order-choice">
+                                    <input type="checkbox" data-booking-item="${id}">
+                                    <span>${item.name} <small>(${rupiah(item.price)})</small></span>
+                                </label>
+                                <input class="quantity-input" type="number" min="1" value="1" step="1"
+                                    data-booking-quantity="${id}" aria-label="Jumlah ${item.name}" disabled>
+                            </div>`;
+                    }).join("")}
+                </div>`).join("");
+        }
+
+        function updateBookingSummary() {
+            const rows = [...bookingForm.querySelectorAll("[data-booking-item]:checked")].map((checkbox) => {
+                const [category, index] = checkbox.dataset.bookingItem.split("-");
+                const item = MENU[category].items[Number(index)];
+                const quantityInput = bookingForm.querySelector(`[data-booking-quantity="${checkbox.dataset.bookingItem}"]`);
+                const quantity = Math.max(1, Number(quantityInput.value) || 1);
+                return { item, quantity, subtotal: item.price * quantity };
+            });
+            const total = rows.reduce((sum, row) => sum + row.subtotal, 0);
+
+            bookingSummary.innerHTML = rows.length
+                ? rows.map(({ item, quantity, subtotal }) => `
+                    <div>${item.name} × ${quantity}<strong style="float:right">${rupiah(subtotal)}</strong></div>
+                `).join("")
+                : "<p>Belum ada menu yang dipilih.</p>";
+            bookingTotal.textContent = rupiah(total);
+            return { rows, total };
+        }
+
+        function updatePaymentOptions(paymentType) {
+            const cardBrands = document.getElementById("cardBrands");
+            const walletBrands = document.getElementById("walletBrands");
+            const showCard = paymentType === "Kartu Debit/Kredit";
+            const activeBrands = showCard ? cardBrands : walletBrands;
+
+            cardBrands.hidden = !showCard;
+            walletBrands.hidden = showCard || !paymentType;
+            [cardBrands, walletBrands].forEach((group) => {
+                const active = group === activeBrands;
+                group.querySelectorAll('input[name="paymentBrand"]').forEach((input) => {
+                    input.disabled = !active;
+                    input.required = active;
+                    if (!active) input.checked = false;
+                });
+            });
+        }
+
+        bookingMenu.addEventListener("change", (event) => {
+            const checkbox = event.target.closest("[data-booking-item]");
+            if (checkbox) {
+                const quantity = bookingForm.querySelector(`[data-booking-quantity="${checkbox.dataset.bookingItem}"]`);
+                quantity.disabled = !checkbox.checked;
+                if (!checkbox.checked) quantity.value = "1";
+                bookingFeedback.textContent = "";
+            }
+            updateBookingSummary();
+        });
+
+        bookingMenu.addEventListener("input", (event) => {
+            if (event.target.matches("[data-booking-quantity]")) updateBookingSummary();
+        });
+
+        bookingForm.querySelectorAll('input[name="paymentType"]').forEach((input) => {
+            input.addEventListener("change", () => {
+                updatePaymentOptions(input.value);
+                bookingFeedback.textContent = "";
+            });
+        });
+
+        bookingForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            bookingFeedback.textContent = "";
+
+            if (!bookingForm.reportValidity()) return;
+            const { rows, total } = updateBookingSummary();
+            if (!rows.length) {
+                bookingFeedback.textContent = "Pilih minimal satu menu sebelum mengirim pesanan.";
+                bookingMenu.scrollIntoView({ behavior: "smooth", block: "center" });
+                return;
+            }
+
+            const paymentType = bookingForm.elements.paymentType.value;
+            const paymentBrand = bookingForm.elements.paymentBrand.value;
+            const lines = rows.map(({ item, quantity }) => `- ${item.name} x${quantity}`).join("\n");
+            const message = `Halo, saya ingin melakukan pemesanan.\n\nNama: ${bookingForm.elements.nama.value.trim()}\nNomor HP: ${bookingForm.elements.hp.value.trim()}\nTanggal booking: ${bookingDate.value}\n\nPesanan:\n${lines}\n\nTotal: ${rupiah(total)}\nMetode pembayaran: ${paymentType} - ${paymentBrand}`;
+            const whatsappUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+            const whatsappWindow = window.open(whatsappUrl, "_blank");
+            if (whatsappWindow) whatsappWindow.opener = null;
+
+            bookingFeedback.textContent = whatsappWindow
+                ? "WhatsApp terbuka dengan rincian pesanan. Tinjau lalu kirim pesan untuk mengonfirmasi."
+                : "Pop-up WhatsApp diblokir. ";
+            if (!whatsappWindow) {
+                const link = document.createElement("a");
+                link.href = whatsappUrl;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.textContent = "Buka WhatsApp";
+                bookingFeedback.append(link);
+            }
+        });
+
 
         /* ==================================================
            LOGIKA PROGRAM
@@ -1013,6 +1446,9 @@
             return "Rp" + number.toLocaleString("id-ID");
         };
 
+        setBookingDateMinimum();
+        renderBookingMenu();
+        updateBookingSummary();
 
         // Mengambil elemen HTML.
         const grid = document.getElementById("grid");
@@ -1269,14 +1705,8 @@
                 rupiah(item.price);
 
 
-            // Pesan WhatsApp.
-            const message =
-                `Halo, saya ingin memesan:\n- ${item.name} (${rupiah(item.price)})\n\nTerima kasih.`;
-
-
-            document.getElementById("mOrder")
-                .href =
-                `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+            const orderButton = document.getElementById("mOrder");
+            orderButton.dataset.orderItem = `${key}-${index}`;
 
 
             // Menampilkan modal.
@@ -1319,6 +1749,26 @@
                 lastFocus.focus();
             }
         }
+
+        document.getElementById("mOrder").addEventListener("click", (event) => {
+            event.preventDefault();
+            const orderButton = event.currentTarget;
+            const bookingItemId = orderButton.dataset.orderItem;
+            const checkbox = bookingForm.querySelector(`[data-booking-item="${bookingItemId}"]`);
+            const quantity = bookingForm.querySelector(`[data-booking-quantity="${bookingItemId}"]`);
+
+            if (!checkbox || !quantity) {
+                throw new Error(`Menu pemesanan tidak ditemukan: ${bookingItemId}`);
+            }
+
+            checkbox.checked = true;
+            quantity.disabled = false;
+            updateBookingSummary();
+            closeModal();
+            window.location.hash = "pesan";
+            document.getElementById("pesan").scrollIntoView({ behavior: "smooth" });
+            quantity.focus({ preventScroll: true });
+        });
 
 
         /* ==================================================
