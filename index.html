@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<title>Restoran Nusantara Maria - Cita Rasa Nusantara</title>
+<meta name="description" content="Makanan dan minuman khas Indonesia dari berbagai daerah.">
+</head>
+<body>
+<!-- Navbar dibuat oleh script.js (fungsi buildLayout) -->
+<header id="site-header"></header>
+
+<main>
+  <!-- HERO. Ganti foto latar: simpan foto sebagai images/hero.jpg -->
+  <section class="hero">
+    <div class="container">
+      <h1>Cita Rasa Nusantara, Hadir di Setiap Sajian</h1>
+      <p>Dari rendang Minang sampai gudeg Jogja, kami menyajikan hidangan khas berbagai daerah Indonesia dengan resep turun-temurun dan bahan segar pilihan.</p>
+      <div class="actions">
+        <a class="btn btn-gold" href="menu.html">Lihat Menu</a>
+        <a class="btn btn-outline" href="menu.html#pesan">Pesan Sekarang</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAKANAN UNGGULAN (kartu dibuat otomatis dari data MENU di script.js) -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Makanan Unggulan</h2>
+      <p class="section-sub">Pilihan favorit pelanggan kami. Klik tombol untuk menambahkannya ke pesanan.</p>
+      <div class="grid" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <!-- VIDEO RESTORAN -->
+  <section class="section alt">
+    <div class="container two-col">
+      <div class="text-block reveal">
+        <h2>Suasana Dapur dan Meja Makan Kami</h2>
+        <p>Tonton bagaimana setiap hidangan disiapkan dengan bumbu segar dan api arang, lalu disajikan hangat di meja Anda.</p>
+      </div>
+      <div class="video-wrap reveal">
+        <img class="photo" src="poster.jpeg" alt="Poster restoran Nusantara Maria" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTER RESTORAN -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Poster Restoran</h2>
+      <p class="section-sub">Informasi menu dan promo terbaru restoran kami.</p>
+      <img class="poster-img reveal" src="poster.jpeg" alt="Poster Restoran Nusantara Maria" style="max-width:640px;margin-inline:auto">
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+<div class="toast" id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>

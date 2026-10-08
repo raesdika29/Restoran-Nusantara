@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover"
+    >
+
+    <title>Daftar Menu – Restoran Nusantara</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        /* ==================================================
+           VARIABEL WARNA
+        ================================================== */
+
+        :root {
+            --cream: #f8f1e3;
+            --card: #ffffff;
+            --brown: #4a2f1d;
+            --muted: #7a6552;
+            --gold: #c19a3b;
+            --green: #1f4d3a;
+            --green-d: #163a2b;
+            --line: #e8dcc2;
+            --shadow: rgba(74, 47, 29, .14);
+
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        /* ==================================================
+           DARK MODE
+        ================================================== */
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --cream: #17201b;
+                --card: #212c25;
+                --brown: #f3e8d2;
+                --muted: #b9ab94;
+                --gold: #d9b455;
+                --green: #2f7a5a;
+                --green-d: #256248;
+                --line: #34443a;
+                --shadow: rgba(0, 0, 0, .45);
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --cream: #17201b;
+            --card: #212c25;
+            --brown: #f3e8d2;
+            --muted: #b9ab94;
+            --gold: #d9b455;
+            --green: #2f7a5a;
+            --green-d: #256248;
+            --line: #34443a;
+            --shadow: rgba(0, 0, 0, .45);
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* ==================================================
+           BODY
+        ================================================== */
+
+        body {
+            margin: 0;
+            background: var(--cream);
+            color: var(--brown);
+            font-family: 'Poppins', system-ui, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* ==================================================
+           HEADER & NAV
+        ================================================== */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--green);
+            color: var(--cream);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .25);
+        }
+
+        .nav {
+            width: min(1140px, 92%);
+            margin: 0 auto;
+            min-height: 68px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: auto;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.05rem;
+            color: var(--cream);
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--cream);
+        }
+
+        .brand b {
+            color: #e3be6b;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color .2s ease, transform .2s ease;
+            color: var(--cream);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-color: #e3be6b;
+        }
+
+        .btn-nav {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 2px solid transparent;
+            background: var(--gold);
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            line-height: 1.2;
+        }
+
+        .btn-nav:hover {
+            background: #9c7322;
+            transform: translateY(-1px);
+        }
+
+        .page-hero {
+            min-height: 34vh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 56px 20px;
+            background: linear-gradient(rgba(18, 38, 28, .72), rgba(48, 24, 10, .6)), var(--green);
+            color: #fff;
+            position: relative;
+        }
+
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 6px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .page-hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.9rem, 5vw, 3rem);
+            margin: 0 0 8px;
+        }
+
+        .page-hero p {
+            max-width: 560px;
+            margin: 0 auto;
+            opacity: .92;
+        }
+
+        /* ==================================================
+           MAIN
+        ================================================== */
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 16px 56px;
+        }
+
+        /* ==================================================
+           KATEGORI MENU
+        ================================================== */
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: -4px 0 28px;
+        }
+
+        .tab {
+            border: 1.5px solid var(--gold);
+            background: var(--card);
+            color: var(--brown);
+
+            font: 500 1rem 'Poppins', sans-serif;
+
+            padding: 10px 22px;
+            border-radius: 999px;
+
+            cursor: pointer;
+            min-height: 44px;
+
+            transition: .2s;
+        }
+
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px var(--shadow);
+        }
+
+        .tab.active {
+            background: var(--green);
+            color: #fff;
+            border-color: var(--green);
+        }
+
+        /* ==================================================
+           JUDUL SECTION
+        ================================================== */
+
+        .sec-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.6rem;
+            text-align: center;
+            margin: 0 0 4px;
+        }
+
+        .sec-sub {
+            text-align: center;
+            color: var(--muted);
+            margin: 0 0 24px;
+            font-size: .92rem;
+        }
+
+        /* ==================================================
+           GRID MENU
+        ================================================== */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fill,
+                minmax(250px, 1fr)
+            );
+            gap: 22px;
+        }
+
+        /* ==================================================
+           CARD MENU
+        ================================================== */
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+
+            box-shadow: 0 4px 12px var(--shadow);
+
+            transition:
+                transform .25s,
+                box-shadow .25s;
+
+            animation: up .45s both;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 30px var(--shadow);
+        }
+
+        /* ==================================================
+           ANIMASI
+        ================================================== */
+
+        @keyframes up {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* ==================================================
+           GAMBAR MENU
+        ================================================== */
+
+        .pic {
+            height: 180px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 5.5rem;
+
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pic span {
+            transition: transform .3s;
+            filter: drop-shadow(
+                0 6px 8px rgba(0, 0, 0, .25)
+            );
+        }
+
+        .card:hover .pic span {
+            transform: scale(1.15) rotate(-4deg);
+        }
+
+        /* ==================================================
+           ISI CARD
+        ================================================== */
+
+        .body {
+            padding: 16px 18px 18px;
+
+            display: flex;
+            flex-direction: column;
+
+            flex: 1;
+        }
+
+        .body h3 {
+            margin: 0 0 4px;
+
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.2rem;
+        }
+
+        .body p {
+            margin: 0 0 12px;
+
+            color: var(--muted);
+            font-size: .88rem;
+
+            flex: 1;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+        }
+
+        /* ==================================================
+           HARGA
+        ================================================== */
+
+        .price {
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 1.05rem;
+        }
+
+        /* ==================================================
+           BUTTON
+        ================================================== */
+
+        .btn {
+            border: 0;
+            background: var(--green);
+            color: #fff;
+
+            font: 500 .88rem 'Poppins', sans-serif;
+
+            padding: 10px 16px;
+            border-radius: 10px;
+
+            cursor: pointer;
+            min-height: 42px;
+
+            transition: .2s;
+
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--green-d);
+            transform: translateY(-1px);
+        }
+
+        .btn.gold {
+            background: var(--gold);
+            color: #2b1c10;
+        }
+
+        .btn.gold:hover {
+            background: #d6ae4d;
+        }
+
+        /* ==================================================
+           MODAL
+        ================================================== */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(20, 12, 6, .65);
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 16px;
+            z-index: 50;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .dialog {
+            background: var(--card);
+            color: var(--brown);
+
+            border-radius: 20px;
+
+            max-width: 440px;
+            width: 100%;
+
+            max-height: 92vh;
+            overflow: auto;
+
+            position: relative;
+
+            animation: pop .28s both;
+        }
+
+        /* ==================================================
+           ANIMASI MODAL
+        ================================================== */
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: scale(.92);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .dialog .pic {
+            height: 230px;
+            font-size: 7.5rem;
+            cursor: default;
+        }
+
+        .dialog .body {
+            padding: 20px 22px 24px;
+        }
+
+        .dialog h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            margin: 0 0 4px;
+        }
+
+        /* ==================================================
+           TAG KATEGORI
+        ================================================== */
+
+        .tag {
+            display: inline-block;
+
+            font-size: .75rem;
+
+            background: var(--cream);
+            border: 1px solid var(--line);
+
+            padding: 2px 10px;
+            border-radius: 999px;
+
+            color: var(--muted);
+
+            margin-bottom: 10px;
+        }
+
+        /* ==================================================
+           BUTTON CLOSE MODAL
+        ================================================== */
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+            border: 0;
+
+            background: rgba(255, 255, 255, .9);
+            color: #333;
+
+            font-size: 1.4rem;
+
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .dialog .btn {
+            width: 100%;
+            margin-top: 14px;
+        }
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        footer {
+            text-align: center;
+
+            color: var(--muted);
+            font-size: .85rem;
+
+            padding: 20px 16px 28px;
+
+            border-top: 1px solid var(--line);
+        }
+
+        /* ==================================================
+           RESPONSIVE
+        ================================================== */
+
+        @media (max-width: 760px) {
+            .nav {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 12px 0;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 18px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab {
+                padding: 10px 16px;
+                font-size: .92rem;
+            }
+
+            .page-hero {
+                min-height: 25vh;
+            }
+        }
+
+        /* ==================================================
+           REDUCED MOTION
+        ================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================================================
+         HEADER
+    ================================================== -->
+
+    <header class="site-header">
+        <nav class="nav" aria-label="Navigasi utama">
+            <a class="brand" href="index.html">
+                <img src="logo.jpg" alt="Logo Restoran Nusantara Maria">
+                <span>Restoran <b>Nusantara</b> Maria</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a class="btn-nav" href="menu.html#menu">Pesan Sekarang</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div>
+            <h1>Menu Nusantara</h1>
+            <p>Rasakan cita rasa autentik dari berbagai daerah Indonesia, disajikan dengan bumbu tradisional dan bahan segar terbaik.</p>
+        </div>
+    </section>
+
+
+    <!-- ==================================================
+         KONTEN UTAMA
+    ================================================== -->
+
+    <main id="menu">
+
+        <!-- Tombol Kategori -->
+        <div
+            class="tabs"
+            role="tablist"
+            aria-label="Kategori menu"
+        ></div>
+
+        <!-- Judul Kategori -->
+        <h2
+            class="sec-title"
+            id="secTitle"
+        ></h2>
+
+        <p
+            class="sec-sub"
+            id="secSub"
+        ></p>
+
+        <!-- Daftar Menu -->
+        <div
+            class="grid"
+            id="grid"
+        ></div>
+
+    </main>
+
+
+    <!-- ==================================================
+         MODAL DETAIL MENU
+    ================================================== -->
+
+    <div
+        class="modal"
+        id="modal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mName"
+        >
+
+            <!-- Tombol Tutup -->
+            <button
+                class="close"
+                id="mClose"
+                aria-label="Tutup"
+            >
+                &times;
+            </button>
+
+            <!-- Gambar / Emoji -->
+            <div
+                class="pic"
+                id="mPic"
+            ></div>
+
+            <!-- Detail Menu -->
+            <div class="body">
+
+                <span
+                    class="tag"
+                    id="mTag"
+                ></span>
+
+                <h2 id="mName"></h2>
+
+                <p
+                    id="mDesc"
+                    style="color:var(--muted); margin:6px 0 10px"
+                ></p>
+
+                <div
+                    class="price"
+                    id="mPrice"
+                    style="font-size:1.4rem"
+                ></div>
+
+                <!-- Tombol Pesan -->
+                <a
+                    class="btn gold"
+                    id="mOrder"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Pesan Sekarang
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <footer>
+        © 2026 Restoran Nusantara Maria · Jl. Contoh No. 123, Pamulang, Tangerang Selatan · Buka setiap hari 10.00 – 22.00 WIB
+    </footer>
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script>
+
+        /* ==================================================
+           PENGATURAN
+        ================================================== */
+
+        // Ganti dengan nomor WhatsApp restoran sebenarnya.
+        // Format: 62, tanpa tanda + atau 0 di depan.
+
+        const WA_NUMBER = "6281234567890";
+
+
+        /* ==================================================
+           DATA MENU
+        ==================================================
+
+           Untuk menggunakan foto sendiri, tambahkan:
+
+           img: "images/nama-foto.jpg"
+
+           Contoh:
+
+           {
+               name: "Rendang Sapi",
+               price: 35000,
+               emoji: "🥘",
+               bg: ["#8a3b1c", "#4a1e0e"],
+               origin: "Minangkabau, Sumatera Barat",
+               desc: "Deskripsi menu",
+               img: "images/rendang.jpg"
+           }
+
+        ================================================== */
+
+        const MENU = {
+
+            /* =========================
+               MAKANAN
+            ========================= */
+
+            makanan: {
+                label: "🍛 Makanan",
+                title: "Makanan",
+                sub: "Hidangan utama khas Nusantara",
+
+                items: [
+
+                    {
+                        name: "Rendang Padang",
+                        price: 35000,
+                        img: "rendang.jpeg",
+                        origin: "Sumatera Barat",
+                        desc: "Daging sapi dimasak berjam-jam dengan santan dan rempah hingga empuk dan pekat."
+                    },
+
+                    {
+                        name: "Nasi Liwet",
+                        price: 28000,
+                        img: "nasi-liwet.jpeg",
+                        origin: "Jawa Tengah",
+                        desc: "Nasi gurih berkuah santan, disajikan dengan ayam suwir, telur, dan sayur labu."
+                    },
+
+                    {
+                        name: "Gudeg Jogja",
+                        price: 30000,
+                        img: "gudeg.jpeg",
+                        origin: "Yogyakarta",
+                        desc: "Nangka muda dimasak manis dengan gula aren, krecek, dan telur pindang."
+                    },
+
+                    {
+                        name: "Soto Betawi",
+                        price: 32000,
+                        img: "soto-betawi.jpeg",
+                        origin: "Jakarta",
+                        desc: "Soto kuah santan dan susu dengan daging sapi, tomat, emping, dan acar."
+                    },
+
+                    {
+                        name: "Pempek Palembang",
+                        price: 25000,
+                        img: "pempek.jpeg",
+                        origin: "Sumatera Selatan",
+                        desc: "Olahan ikan dan sagu disajikan dengan kuah cuko asam, manis, dan pedas."
+                    },
+
+                    {
+                        name: "Ayam Betutu Bali",
+                        price: 35000,
+                        img: "ayam-betutu.jpeg",
+                        origin: "Bali",
+                        desc: "Ayam berbumbu base genep khas Bali, dibungkus daun pisang lalu dipanggang."
+                    },
+
+                    {
+                        name: "Rawon Jawa Timur",
+                        price: 32000,
+                        img: "rawon.jpeg",
+                        origin: "Jawa Timur",
+                        desc: "Sup daging berkuah hitam dari kluwek, dengan tauge pendek dan sambal."
+                    },
+
+                    {
+                        name: "Coto Makassar",
+                        price: 30000,
+                        img: "coto-makassar.jpeg",
+                        origin: "Sulawesi Selatan",
+                        desc: "Sup jeroan dan daging sapi dengan bumbu kacang, disajikan bersama ketupat."
+                    },
+
+                    {
+                        name: "Sate Madura",
+                        price: 28000,
+                        img: "sate-madura.jpeg",
+                        origin: "Jawa Timur",
+                        desc: "Sate ayam berbumbu kacang dan kecap manis, dibakar di atas arang."
+                    },
+
+                    {
+                        name: "Gado-Gado",
+                        price: 22000,
+                        img: "gado-gado.jpeg",
+                        origin: "Jakarta",
+                        desc: "Sayuran rebus, tahu, tempe, dan telur dengan saus kacang yang kental."
+                    }
+
+                ]
+            },
+
+
+            /* =========================
+               MINUMAN
+            ========================= */
+
+            minuman: {
+                label: "🥤 Minuman",
+                title: "Minuman",
+                sub: "Penyegar dahaga ala Nusantara",
+
+                items: [
+
+                    {
+                        name: "Es Cendol",
+                        price: 15000,
+                        img: "es-cendol.jpeg",
+                        origin: "Jawa Barat",
+                        desc: "Cendol hijau, santan, dan gula aren cair di atas es serut."
+                    },
+
+                    {
+                        name: "Es Teh Nusantara",
+                        price: 8000,
+                        img: "es-teh.jpeg",
+                        origin: "Jawa",
+                        desc: "Teh melati dingin dengan gula batu, segar diminum bersama makanan pedas."
+                    },
+
+                    {
+                        name: "Es Jeruk",
+                        price: 12000,
+                        img: "es-jeruk.jpeg",
+                        origin: "Nusantara",
+                        desc: "Perasan jeruk segar dengan es batu dan sedikit gula."
+                    },
+
+                    {
+                        name: "Kopi Gula Aren",
+                        price: 18000,
+                        img: "es-teh.jpeg",
+                        origin: "Nusantara",
+                        desc: "Kopi hitam yang lembut dengan sentuhan gula aren dan susu."
+                    },
+
+                    {
+                        name: "Wedang Jahe",
+                        price: 12000,
+                        img: "es-teh.jpeg",
+                        origin: "Jawa Tengah",
+                        desc: "Minuman jahe hangat dengan gula batu dan serai, pas untuk menghangatkan badan."
+                    }
+
+                ]
+            },
+
+
+            /* =========================
+               DESSERT
+            ========================= */
+
+            dessert: {
+                label: "🍰 Dessert",
+                title: "Dessert",
+                sub: "Manis penutup yang berkesan",
+
+                items: [
+
+                    {
+                        name: "Es Pisang Ijo",
+                        price: 18000,
+                        img: "es-pisang-hijau.jpeg",
+                        origin: "Sulawesi Selatan",
+                        desc: "Pisang berbalut adonan hijau dengan sirup dan es serut yang lembut."
+                    },
+
+                    {
+                        name: "Klepon",
+                        price: 15000,
+                        img: "kelpon.jpeg",
+                        origin: "Jawa",
+                        desc: "Bola ketan hijau berisi gula merah cair, digulung kelapa parut."
+                    },
+
+                    {
+                        name: "Kolak Pisang",
+                        price: 16000,
+                        img: "kolak-pisang.jpeg",
+                        origin: "Nusantara",
+                        desc: "Pisang dan ubi dengan kuah santan manis, cocok untuk penutup yang hangat."
+                    }
+
+                ]
+            }
+
+        };
+
+
+        /* ==================================================
+           LOGIKA PROGRAM
+        ================================================== */
+
+        // Format angka menjadi Rupiah.
+        const rupiah = (number) => {
+            return "Rp" + number.toLocaleString("id-ID");
+        };
+
+
+        // Mengambil elemen HTML.
+        const grid = document.getElementById("grid");
+        const tabsEl = document.querySelector(".tabs");
+        const modal = document.getElementById("modal");
+
+        let lastFocus = null;
+
+
+        /* ==================================================
+           MEMBUAT GAMBAR / EMOJI MENU
+        ================================================== */
+
+        function art(item) {
+
+            if (item.img) {
+                return `
+                    <img
+                        src="${item.img}"
+                        alt="${item.name}"
+                        loading="lazy"
+                    >
+                `;
+            }
+
+            return `
+                <span aria-hidden="true">
+                    ${item.emoji}
+                </span>
+            `;
+        }
+
+
+        /* ==================================================
+           BACKGROUND MENU
+        ================================================== */
+
+        function bgOf(item) {
+
+            if (item.img) {
+                return "";
+            }
+
+            return `
+                background: linear-gradient(
+                    135deg,
+                    ${item.bg[0]},
+                    ${item.bg[1]}
+                )
+            `;
+        }
+
+
+        /* ==================================================
+           MENAMPILKAN MENU
+        ================================================== */
+
+        function render(key) {
+
+            const category = MENU[key];
+
+            // Judul kategori.
+            document.getElementById("secTitle").textContent =
+                category.title;
+
+            // Deskripsi kategori.
+            document.getElementById("secSub").textContent =
+                category.sub;
+
+
+            // Membuat kartu menu.
+            grid.innerHTML = category.items
+                .map((item, index) => {
+
+                    return `
+                        <article
+                            class="card"
+                            style="animation-delay:${index * 70}ms"
+                        >
+
+                            <div
+                                class="pic"
+                                style="${bgOf(item)}"
+                                data-k="${key}"
+                                data-i="${index}"
+                                role="img"
+                                aria-label="${item.name}"
+                            >
+                                ${art(item)}
+                            </div>
+
+                            <div class="body">
+
+                                <h3>
+                                    ${item.name}
+                                </h3>
+
+                                <p>
+                                    ${item.desc}
+                                </p>
+
+                                <div class="row">
+
+                                    <span class="price">
+                                        ${rupiah(item.price)}
+                                    </span>
+
+                                    <button
+                                        class="btn"
+                                        data-k="${key}"
+                                        data-i="${index}"
+                                    >
+                                        Lihat Detail
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+                    `;
+
+                })
+                .join("");
+
+
+            // Menentukan tab yang sedang aktif.
+            tabsEl
+                .querySelectorAll(".tab")
+                .forEach((tab) => {
+
+                    const active =
+                        tab.dataset.k === key;
+
+                    tab.classList.toggle(
+                        "active",
+                        active
+                    );
+
+                    tab.setAttribute(
+                        "aria-selected",
+                        active
+                    );
+                });
+        }
+
+
+        /* ==================================================
+           MEMBUAT TOMBOL KATEGORI
+        ================================================== */
+
+        tabsEl.innerHTML = Object
+            .entries(MENU)
+            .map(([key, category]) => {
+
+                return `
+                    <button
+                        class="tab"
+                        role="tab"
+                        data-k="${key}"
+                    >
+                        ${category.label}
+                    </button>
+                `;
+
+            })
+            .join("");
+
+
+        /* ==================================================
+           EVENT KLIK KATEGORI
+        ================================================== */
+
+        tabsEl.addEventListener("click", (event) => {
+
+            const tab =
+                event.target.closest(".tab");
+
+            if (!tab) {
+                return;
+            }
+
+            render(tab.dataset.k);
+        });
+
+
+        /* ==================================================
+           EVENT KLIK MENU
+        ================================================== */
+
+        grid.addEventListener("click", (event) => {
+
+            const element =
+                event.target.closest("[data-k][data-i]");
+
+            if (!element) {
+                return;
+            }
+
+            openModal(
+                element.dataset.k,
+                Number(element.dataset.i)
+            );
+        });
+
+
+        /* ==================================================
+           MEMBUKA MODAL DETAIL
+        ================================================== */
+
+        function openModal(key, index) {
+
+            const item =
+                MENU[key].items[index];
+
+            // Menyimpan elemen yang terakhir dipilih.
+            lastFocus = document.activeElement;
+
+
+            // Gambar / emoji.
+            const picture =
+                document.getElementById("mPic");
+
+            picture.style.cssText =
+                bgOf(item);
+
+            picture.innerHTML =
+                art(item);
+
+
+            // Kategori dan asal menu.
+            document.getElementById("mTag")
+                .textContent =
+                MENU[key].title +
+                " · " +
+                item.origin;
+
+
+            // Nama menu.
+            document.getElementById("mName")
+                .textContent =
+                item.name;
+
+
+            // Deskripsi.
+            document.getElementById("mDesc")
+                .textContent =
+                item.desc;
+
+
+            // Harga.
+            document.getElementById("mPrice")
+                .textContent =
+                rupiah(item.price);
+
+
+            // Pesan WhatsApp.
+            const message =
+                `Halo, saya ingin memesan:\n- ${item.name} (${rupiah(item.price)})\n\nTerima kasih.`;
+
+
+            document.getElementById("mOrder")
+                .href =
+                `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+
+
+            // Menampilkan modal.
+            modal.classList.add("open");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.style.overflow =
+                "hidden";
+
+
+            // Fokus ke tombol close.
+            document.getElementById("mClose")
+                .focus();
+        }
+
+
+        /* ==================================================
+           MENUTUP MODAL
+        ================================================== */
+
+        function closeModal() {
+
+            modal.classList.remove("open");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.style.overflow =
+                "";
+
+
+            // Mengembalikan fokus.
+            if (lastFocus) {
+                lastFocus.focus();
+            }
+        }
+
+
+        /* ==================================================
+           EVENT TOMBOL CLOSE
+        ================================================== */
+
+        document
+            .getElementById("mClose")
+            .onclick = closeModal;
+
+
+        /* ==================================================
+           MENUTUP MODAL KETIKA AREA LUAR DIKLIK
+        ================================================== */
+
+        modal.addEventListener("click", (event) => {
+
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+
+        /* ==================================================
+           MENUTUP MODAL DENGAN TOMBOL ESC
+        ================================================== */
+
+        document.addEventListener("keydown", (event) => {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains("open")
+            ) {
+                closeModal();
+            }
+        });
+
+
+        /* ==================================================
+           MENU DEFAULT
+        ================================================== */
+
+        // Menampilkan kategori Makanan
+        // ketika halaman pertama kali dibuka.
+
+        render("makanan");
+
+    </script>
+
+</body>
+
+</html>
